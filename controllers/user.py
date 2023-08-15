@@ -22,11 +22,6 @@ def loginUser():
     data = User.userLogin()
     return data
 
-# user update details
-@bp_app.route('/user_update', methods=['POST'])
-def updateUser():
-    data = User.userUpdate()
-    return data
 
 # password update
 @bp_app.route('/password_update', methods=['POST'])
