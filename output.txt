@@ -1,1 +1,1 @@
-UPDATE healthcare.user SET password=%s WHERE id  =  '1'
+UPDATE healthcare.patient SET full_name=%s, date_of_birth=%s, phone_number=%s, location=%s WHERE user_id  =  '521ce7a7-3cd7-4af2-9489-d7027628a90a'

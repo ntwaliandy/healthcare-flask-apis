@@ -23,9 +23,14 @@ class Doctor:
             _location = _json['location']
 
             # check if doctor exists
-            check_user = check_doctor_existing(_userID)
+            check_user = check_user_existing(_userID)
             if len(check_user) <= 0:
                 response = make_response(403, "user doesn't exist", "null")
+                return response
+
+            check_doctor = check_doctor_existing(_userID)
+            if len(check_doctor) > 0:
+                response = make_response(403, "doctor already exists", "null")
                 return response
 
             doctor_dict = {"user_id": _userID, "doctor_id": _doctorID, "full_name": _fullName, "date_of_birth": _dateOfBirth, "phone_number": _phoneNumber, "location": _location}
@@ -51,7 +56,14 @@ def make_response(status, message, data):
 
 
 # check user existing function
-def check_doctor_existing(userID):
+def check_user_existing(userID):
     sql = "SELECT * FROM healthcare.user WHERE user_id = '" + str(userID) + "' AND role = 'doctor'"
+    data = DB().select(sql)
+    return data
+
+
+# check user existing function
+def check_doctor_existing(userID):
+    sql = "SELECT * FROM healthcare.doctor WHERE user_id = '" + str(userID) + "'"
     data = DB().select(sql)
     return data
