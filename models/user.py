@@ -43,7 +43,7 @@ class User:
             return response
 
         except Exception as e:
-            print(e)
+            print(str(e))
             response = make_response(403, "failed to register user", "null")
             return response
 
